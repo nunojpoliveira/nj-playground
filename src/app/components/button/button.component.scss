@@ -1,0 +1,140 @@
+$text-regular-padding: 0.5rem 1rem;
+$text-regular-text-font: bold 14px Arial, sans-serif;
+
+$text-small-padding: 5px 12px;
+$text-small-text-font: bold 12px Arial, sans-serif;
+
+$text-primary-background-color: #7c89a1;
+$text-primary-hover-background-color: #6c7c97;
+$text-primary-disabled-background-color: #a3acbd;
+$text-primary-active-background-color: #526482;
+$text-primary-text-color: #ffffff;
+$text-primary-disabled-text-color: #d7dbe2;
+
+$text-secondary-background-color: #ffffff;
+$text-secondary-hover-background-color: #e9ebf1;
+$text-secondary-disabled-background-color: #ffffff;
+$text-secondary-active-background-color: #526482;
+$text-secondary-text-color: #444444;
+$text-secondary-disabled-text-color: #c3c3c3;
+$text-secondary-active-text-color: #ffffff;
+
+@mixin text-primary {
+  background-color: $text-primary-background-color;
+  color: $text-primary-text-color;
+}
+
+@mixin text-primary-disabled {
+  background-color: $text-primary-disabled-background-color;
+  color: $text-primary-disabled-text-color;
+}
+
+@mixin text-primary-active {
+  background-color: $text-primary-active-background-color;
+}
+
+@mixin text-primary-hover {
+  background-color: $text-primary-hover-background-color;
+}
+
+@mixin text-secondary {
+  background-color: $text-secondary-background-color;
+  color: $text-secondary-text-color;
+  font: $text-regular-text-font;
+}
+
+@mixin text-secondary-disabled {
+  background-color: $text-secondary-disabled-background-color;
+  color: $text-secondary-disabled-text-color;
+}
+
+@mixin text-secondary-active {
+  background-color: $text-secondary-active-background-color;
+  color: $text-secondary-active-text-color;
+}
+
+@mixin text-secondary-hover {
+  background-color: $text-secondary-hover-background-color;
+}
+
+button {
+  outline: none;
+  border: 0;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+.text-regular-primary {
+  @include text-primary;
+  font: $text-regular-text-font;
+  padding: $text-regular-padding;
+}
+
+.text-regular-secondary {
+  @include text-secondary;
+  font: $text-regular-text-font;
+  padding: $text-regular-padding;
+}
+
+.text-small-primary {
+  @include text-primary;
+  font: $text-small-text-font;
+  padding: $text-small-padding;
+}
+
+.text-small-secondary {
+  @include text-secondary;
+  font: $text-small-text-font;
+  padding: $text-small-padding;
+}
+
+.text-regular-primary:disabled {
+  @include text-primary-disabled;
+}
+
+.text-regular-primary.active {
+  @include text-primary-active;
+}
+
+.text-regular-primary:hover:not([disabled]):not(.active) {
+  @include text-primary-hover;
+}
+
+.text-regular-secondary.active {
+  @include text-secondary-active;
+}
+
+.text-regular-secondary:disabled {
+  @include text-secondary-disabled;
+}
+
+.text-regular-secondary:hover:not([disabled]):not(.active) {
+  @include text-secondary-hover;
+}
+
+.text-small-primary:disabled {
+  @include text-primary-disabled;
+}
+
+.text-small-primary.active {
+  @include text-primary-active;
+}
+
+.text-small-primary:hover:not([disabled]):not(.active) {
+  @include text-primary-hover;
+}
+
+.text-small-secondary.active {
+  @include text-secondary-active;
+}
+
+.text-small-secondary:disabled {
+  @include text-secondary-disabled;
+}
+
+.text-small-secondary:hover:not([disabled]):not(.active) {
+  @include text-secondary-hover;
+}
