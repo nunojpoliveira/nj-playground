@@ -1,0 +1,57 @@
+$context-menu-background-color: #ffffff;
+$context-menu-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
+$context-menu-min-width: 6em;
+
+$context-menu-item-border-bottom: 1px solid #d3d3d3;
+$context-menu-item-hover-background-color: #e9ebf1;
+$context-menu-item-padding: 9px 0.5rem 9px 0.5rem;
+$context-menu-item-text-color: #444444;
+$context-menu-item-text-font: 12px Arial, sans-serif;
+$context-menu-item-icon-font-size: 16px;
+$context-menu-item-icon-margin-left: 0.5rem;
+$context-menu-item-icon-min-width: 1rem;
+$context-menu-item-disabled-text-color: #c2c2c2;
+
+ul.vertical {
+  background-color: $context-menu-background-color;
+  box-shadow: $context-menu-box-shadow;
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  min-width: $context-menu-min-width;
+  padding: 0;
+}
+
+ul.vertical li {
+  color: $context-menu-item-text-color;
+  cursor: pointer;
+  display: flex;
+  user-select: none;
+}
+
+ul.vertical li.disabled {
+  color: $context-menu-item-disabled-text-color;
+  pointer-events: none;
+}
+
+ul.vertical li:hover {
+  background-color: $context-menu-item-hover-background-color;
+}
+
+ul.vertical li:not(:last-child) {
+  border-bottom: $context-menu-item-border-bottom;
+}
+
+ul.vertical li em {
+  align-self: center;
+  font-size: $context-menu-item-icon-font-size;
+  margin-left: $context-menu-item-icon-margin-left;
+  min-width: $context-menu-item-icon-min-width;
+}
+
+ul.vertical li a {
+  display: block;
+  font: $context-menu-item-text-font;
+  padding: $context-menu-item-padding;
+  text-decoration: none;
+}

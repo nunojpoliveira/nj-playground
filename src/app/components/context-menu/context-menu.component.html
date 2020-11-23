@@ -1,0 +1,6 @@
+<ul class="vertical">
+  <li *ngFor="let item of items" [class.disabled]="item.disabled">
+    <em *ngIf="item.icon as icon" [class]="icon"></em>
+    <a>{{ item.text }}</a>
+  </li>
+</ul>

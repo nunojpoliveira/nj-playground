@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from './components/button/button.component';
+import { ContextMenuModule } from './components/context-menu/context-menu.component';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { ButtonModule } from './components/button/button.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ButtonModule
+    ButtonModule,
+    ContextMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
