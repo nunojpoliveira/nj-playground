@@ -12,7 +12,7 @@ export class OverlayComponent {
   constructor(readonly elementRef: ElementRef) { }
 
   @HostListener('document:mousedown', ['$event']) onMouseEnter(event: Event): void {
-    if (!this.elementRef.nativeElement.parentElement.contains(event.target)) {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
       this.clickOutside.emit();
     }
   }
