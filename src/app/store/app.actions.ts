@@ -1,13 +1,14 @@
 import {createAction, props} from '@ngrx/store';
+import {PersonalRecord} from '../app.models';
 
 export enum AppActionTypes {
-  LOAD_DATA = '[App] Load Data',
-  LOAD_DATA_SUCCESS = '[App] Load Data Success',
-  LOAD_DATA_FAIL = '[App] Load Data Fail'
+  LOAD_PERSONAL_RECORDS = '[App] Load Personal Records',
+  LOAD_PERSONAL_RECORDS_SUCCESS = '[App] Load Personal Records Success',
+  LOAD_PERSONAL_RECORDS_FAIL = '[App] Load Personal Records Fail'
 }
 
-export const loadData = createAction(AppActionTypes.LOAD_DATA);
+export const loadPersonalRecords = createAction(AppActionTypes.LOAD_PERSONAL_RECORDS);
 
-export const loadDataSuccess = createAction(AppActionTypes.LOAD_DATA_SUCCESS, props<{ data: string }>());
+export const loadPersonalRecordsSuccess = createAction(AppActionTypes.LOAD_PERSONAL_RECORDS_SUCCESS, props<{ personalRecords: PersonalRecord[] }>());
 
-export const loadDataFail = createAction(AppActionTypes.LOAD_DATA_FAIL);
+export const loadPersonalRecordsFail = createAction(AppActionTypes.LOAD_PERSONAL_RECORDS_FAIL);

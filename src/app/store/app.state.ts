@@ -1,7 +1,11 @@
+import {PersonalRecord} from '../app.models';
+
 export interface State {
-  isLoadingData: boolean;
+  isLoadingPersonalRecords: boolean;
+  personalRecords: PersonalRecord[];
 }
 
 export const initialState: State = {
-  isLoadingData: false
+  isLoadingPersonalRecords: false,
+  personalRecords: []
 };

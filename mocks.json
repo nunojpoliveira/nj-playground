@@ -1,0 +1,28 @@
+{
+  "personalRecords": [
+    {
+      "id": 1,
+      "exercise": "Deadlift",
+      "records": {
+        "3x12": 50,
+        "5x5": 75
+      }
+    },
+    {
+      "id": 2,
+      "exercise": "Bench Press",
+      "records": {
+        "3x12": 25,
+        "5x5": 50
+      }
+    },
+    {
+      "id": 3,
+      "exercise": "Bent Over Barbell Row",
+      "records": {
+        "3x12": 25,
+        "5x5": 50
+      }
+    }
+  ]
+}

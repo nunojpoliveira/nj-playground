@@ -3,4 +3,6 @@ import {State} from './app.state';
 
 export const selectAppState = createFeatureSelector<State>('app');
 
-export const selectIsLoadingData = createSelector(selectAppState, state => state.isLoadingData);
+export const selectIsLoadingPersonalRecords = createSelector(selectAppState, state => state.isLoadingPersonalRecords);
+
+export const selectPersonalRecords = createSelector(selectAppState, state => state.personalRecords);

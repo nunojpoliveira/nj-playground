@@ -1,20 +1,21 @@
 import {Action, createReducer, on} from '@ngrx/store';
-import {loadData, loadDataFail, loadDataSuccess} from './app.actions';
+import {loadPersonalRecords, loadPersonalRecordsFail, loadPersonalRecordsSuccess} from './app.actions';
 import {initialState, State} from './app.state';
 
 const appReducer = createReducer(
   initialState,
-  on(loadData, state => ({
+  on(loadPersonalRecords, state => ({
     ...state,
-    isLoadingData: true
+    isLoadingPersonalRecords: true
   })),
-  on(loadDataSuccess, state => ({
+  on(loadPersonalRecordsSuccess, (state, { personalRecords }) => ({
     ...state,
-    isLoadingData: false
+    personalRecords,
+    isLoadingPersonalRecords: false
   })),
-  on(loadDataFail, state => ({
+  on(loadPersonalRecordsFail, state => ({
     ...state,
-    isLoadingData: false
+    isLoadingPersonalRecords: false
   }))
 );
 

@@ -1,44 +1,46 @@
 import {State} from './app.state';
 import { reducer as AppReducer } from './app.reducer';
-import {AppActionTypes, loadData, loadDataFail, loadDataSuccess} from './app.actions';
+import {AppActionTypes, loadPersonalRecords, loadPersonalRecordsFail, loadPersonalRecordsSuccess} from './app.actions';
 
 describe('App Reducers', () => {
   let state: State;
 
   beforeEach(() => {
     state = {
-      isLoadingData: false
+      isLoadingPersonalRecords: false,
+      personalRecords: []
     };
   });
 
-  it(`should handle the '${AppActionTypes.LOAD_DATA}' action`, () => {
-    expect(AppReducer(state, loadData())).toEqual({
+  it(`should handle the '${AppActionTypes.LOAD_PERSONAL_RECORDS}' action`, () => {
+    expect(AppReducer(state, loadPersonalRecords())).toEqual({
       ...state,
-      isLoadingData: true
+      isLoadingPersonalRecords: true
     });
   });
 
-  it(`should handle the '${AppActionTypes.LOAD_DATA_SUCCESS}' action`, () => {
+  it(`should handle the '${AppActionTypes.LOAD_PERSONAL_RECORDS_SUCCESS}' action`, () => {
     state = {
       ...state,
-      isLoadingData: true
+      isLoadingPersonalRecords: true,
+      personalRecords: []
     };
 
-    expect(AppReducer(state, loadDataSuccess({ data: 'data' }))).toEqual({
+    expect(AppReducer(state, loadPersonalRecordsSuccess({ personalRecords: [] }))).toEqual({
       ...state,
-      isLoadingData: false
+      isLoadingPersonalRecords: false
     });
   });
 
-  it(`should handle the '${AppActionTypes.LOAD_DATA_FAIL}' action`, () => {
+  it(`should handle the '${AppActionTypes.LOAD_PERSONAL_RECORDS_FAIL}' action`, () => {
     state = {
       ...state,
-      isLoadingData: true
+      isLoadingPersonalRecords: true
     };
 
-    expect(AppReducer(state, loadDataFail())).toEqual({
+    expect(AppReducer(state, loadPersonalRecordsFail())).toEqual({
       ...state,
-      isLoadingData: false
+      isLoadingPersonalRecords: false
     });
   });
 });
