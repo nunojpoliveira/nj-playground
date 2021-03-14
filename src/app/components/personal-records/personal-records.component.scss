@@ -1,0 +1,83 @@
+table {
+  margin-top: 1rem;
+  user-select: none;
+  white-space: nowrap;
+  width: 100%;
+}
+
+td {
+  font: 24px Arial, sans-serif;
+  padding: 0;
+}
+
+td.lift {
+  padding: 2px 1rem;
+}
+
+td a {
+  cursor: pointer;
+  display: block;
+  padding: 2px 1rem;
+  text-align: center;
+}
+
+td a:hover {
+  background-color: lightcoral;
+}
+
+td:not(:hover) .no-personal-record-value {
+  visibility: hidden;
+}
+
+td:hover .no-personal-record-value {
+  visibility: visible;
+}
+
+th {
+  font: bold 24px Arial, sans-serif;
+  padding: 0;
+}
+
+label {
+  color: #444444;
+}
+
+.form-title {
+  font: 24px Arial, sans-serif;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+input[type=submit] {
+  cursor: pointer;
+  margin-top: 0.5rem;
+  outline: none;
+}
+
+form {
+  background-color: white;
+  padding: 0.5rem;
+
+  input:not([type=submit]) {
+    border: 1px solid #444444;
+    box-sizing: border-box;
+    margin-top: 0.25rem;
+    outline: none;
+    height: 2rem;
+    padding-left: 0.5rem;
+  }
+
+  input[type=number] {
+    width: 3rem;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

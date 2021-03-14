@@ -1,0 +1,55 @@
+<nj-button [isActive]="false" [disabled]="false"
+           [text]="'Add Personal Record'" [type]="'text-regular-secondary'" (click)="this.isAddPersonalRecordFormVisible = true"></nj-button>
+<table aria-describedby="personal-records-table">
+  <colgroup>
+    <col style="background-color: blue; width: 40%">
+    <col span="{{ distinctSetsReps.length }}" [ngStyle]="{'background-color': 'red', 'width': (100 - 40) / distinctSetsReps.length + '%' }">
+  </colgroup>
+  <tr>
+    <th id="lift">Lift</th>
+    <th *ngFor="let setsReps of distinctSetsReps" id="{{ setsReps }}">{{ setsReps }}</th>
+  </tr>
+  <tr *ngFor="let personalRecordItem of items">
+    <td class="lift">{{ personalRecordItem.exercise }}</td>
+    <td (click)="onPersonalRecordClick(personalRecordItem, setsReps)" *ngFor="let setsReps of distinctSetsReps">
+      <a class="personal-record-value" *ngIf="personalRecordItem.records[setsReps] as personalRecordValue">{{ personalRecordValue }}</a>
+      <a class="no-personal-record-value" *ngIf="!personalRecordItem.records[setsReps]">Insert</a>
+    </td>
+  </tr>
+</table>
+<nj-overlay (clickOutside)="this.isEditPersonalRecordFormVisible = false" *ngIf="isEditPersonalRecordFormVisible">
+  <form (ngSubmit)="onSubmit()">
+    <label class="form-title">
+      Edit Personal Record
+    </label>
+    <label class="form-input">
+      New Personal Record
+      <input type="number" [(ngModel)]="personalRecord.record" min="0" max="999" name="weight" autocomplete="off">
+    </label>
+    <input type="submit">
+  </form>
+</nj-overlay>
+<nj-overlay (clickOutside)="this.isAddPersonalRecordFormVisible = false" *ngIf="isAddPersonalRecordFormVisible">
+  <form #addPersonalRecordForm="ngForm" (ngSubmit)="onNewPersonalRecordSubmit(addPersonalRecordForm.value)">
+    <label class="form-title">
+      Add Personal Record
+    </label>
+    <label class="form-input">
+      Lift
+      <input type="text" maxlength="25" name="lift" ngModel autocomplete="off">
+    </label>
+    <label class="form-input">
+      Sets
+      <input type="number" name="sets" ngModel autocomplete="off">
+    </label>
+    <label class="form-input">
+      Reps
+      <input type="number" name="reps" ngModel autocomplete="off">
+    </label>
+    <label class="form-input">
+      Weight
+      <input type="number" name="weight" ngModel autocomplete="off">
+    </label>
+    <input type="submit">
+  </form>
+</nj-overlay>
