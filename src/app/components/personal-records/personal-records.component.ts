@@ -1,10 +1,10 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, NgModule, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, NgModule, Output} from '@angular/core';
 import {OverlayModule} from '../overlay/overlay.component';
-import {FormsModule} from '@angular/forms';
-import {CommonModule} from '@angular/common';
 import {ButtonModule} from '../button/button.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {PersonalRecord, PersonalRecordsChange} from '../../app.models';
+import {PersonalRecord, PersonalRecordChange} from '../../app.models';
+import {DistinctSetsRepsPipe} from './distinct-sets-reps.pipe';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'nj-personal-records[items]',
@@ -12,53 +12,34 @@ import {PersonalRecord, PersonalRecordsChange} from '../../app.models';
   styleUrls: ['./personal-records.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PersonalRecordsComponent implements OnChanges {
+export class PersonalRecordsComponent {
 
   @Input() items: PersonalRecord[];
 
-  @Output() personalRecordsChanged = new EventEmitter<PersonalRecordsChange>();
+  @Output() personalRecordChanged = new EventEmitter<PersonalRecordChange>();
 
-  isAddPersonalRecordFormVisible = false;
+  isFormVisible = false;
 
-  isEditPersonalRecordFormVisible = false;
-
-  personalRecord: PersonalRecordsChange;
-
-  distinctSetsReps: string[];
+  change: PersonalRecordChange;
 
   onPersonalRecordClick(personalRecordItem: PersonalRecord, setsReps: string): void {
-    this.personalRecord = {
+    this.change = {
       exercise: personalRecordItem.exercise,
-      setsAndReps: setsReps,
+      setsReps,
       record: personalRecordItem.records[setsReps]
     };
-    this.isEditPersonalRecordFormVisible = true;
+    this.isFormVisible = true;
   }
 
   onSubmit(): void {
-    this.personalRecordsChanged.emit(this.personalRecord);
-    this.isEditPersonalRecordFormVisible = false;
+    this.personalRecordChanged.emit(this.change);
+    this.isFormVisible = false;
   }
-
-  onNewPersonalRecordSubmit(personalRecord): void {
-    this.personalRecordsChanged.emit({
-      exercise: personalRecord.lift,
-      setsAndReps: personalRecord.sets + 'x' + personalRecord.reps,
-      record: personalRecord.weight
-    });
-  }
-
-  constructor() { }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.distinctSetsReps = [...new Set([].concat(...this.items.map(item => Object.keys(item.records))))];
-  }
-
 }
 
 @NgModule({
-  imports: [BrowserAnimationsModule, CommonModule, FormsModule, OverlayModule, ButtonModule],
+  imports: [CommonModule, FormsModule, OverlayModule, ButtonModule],
   exports: [PersonalRecordsComponent],
-  declarations: [PersonalRecordsComponent]
+  declarations: [DistinctSetsRepsPipe, PersonalRecordsComponent]
 })
 export class PersonalRecordsModule { }
