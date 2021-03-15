@@ -3,3 +3,9 @@ export interface PersonalRecord {
   exercise: string;
   records: { [setsAndReps: string]: number };
 }
+
+export interface PersonalRecordChange {
+  exercise: string;
+  setsReps: string;
+  record: number;
+}
