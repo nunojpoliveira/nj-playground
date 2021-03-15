@@ -1,23 +1,39 @@
+$form-padding: 0.5rem;
+$form-input-margin-top: 0.5rem;
+$form-input-border: 1px solid #444444;
+$form-input-number-margin-top: 0.25rem;
+$form-input-number-height: 2rem;
+$form-input-number-padding-left: 0.5rem;
+$form-input-number-width: 3rem;
+$form-input-number-spin-button-margin: 0;
+$form-input-submit-background-color: white;
+$form-input-submit-margin-top: 0.5rem;
+$form-input-submit-hover-background-color: #c2c2c2;
+
+$lift-cell-padding: 0 0.5rem;
+
+$medium-font: 1.5rem Arial, sans-serif;
+
+$table-cell-padding: 0;
+
 table {
-  margin-top: 1rem;
+  font: $medium-font;
   user-select: none;
   white-space: nowrap;
   width: 100%;
 }
 
 td {
-  font: 24px Arial, sans-serif;
-  padding: 0;
-}
+  padding: $table-cell-padding;
 
-td.lift {
-  padding: 2px 1rem;
+  &.lift {
+    padding: $lift-cell-padding;
+  }
 }
 
 td a {
   cursor: pointer;
   display: block;
-  padding: 2px 1rem;
   text-align: center;
 }
 
@@ -29,55 +45,45 @@ td:not(:hover) .no-personal-record-value {
   visibility: hidden;
 }
 
-td:hover .no-personal-record-value {
-  visibility: visible;
-}
-
-th {
-  font: bold 24px Arial, sans-serif;
-  padding: 0;
-}
-
-label {
-  color: #444444;
-}
-
 .form-title {
-  font: 24px Arial, sans-serif;
+  font: $medium-font;
 }
 
 .form-input {
   display: flex;
   flex-direction: column;
-  margin-top: 0.5rem;
-}
-
-input[type=submit] {
-  cursor: pointer;
-  margin-top: 0.5rem;
-  outline: none;
+  margin-top: $form-input-margin-top;
 }
 
 form {
   background-color: white;
-  padding: 0.5rem;
+  padding: $form-padding;
 
-  input:not([type=submit]) {
-    border: 1px solid #444444;
-    box-sizing: border-box;
-    margin-top: 0.25rem;
+  input[type=submit] {
+    background-color: $form-input-submit-background-color;
+    border: $form-input-border;
+    cursor: pointer;
+    margin-top: $form-input-submit-margin-top;
     outline: none;
-    height: 2rem;
-    padding-left: 0.5rem;
+
+    &:hover {
+      background-color: $form-input-submit-hover-background-color;
+    }
   }
 
   input[type=number] {
-    width: 3rem;
+    border: $form-input-border;
+    box-sizing: border-box;
+    margin-top: $form-input-number-margin-top;
+    outline: none;
+    height: $form-input-number-height;
+    padding-left: $form-input-number-padding-left;
+    width: $form-input-number-width;
   }
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  margin: 0;
+  margin: $form-input-number-spin-button-margin;
 }
