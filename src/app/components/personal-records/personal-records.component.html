@@ -2,7 +2,7 @@
   <nj-button [type]="'text-regular-secondary'" [text]="'Add new Personal Record'"
              (click)="isAddFormVisible = true"></nj-button>
 </div>
-<app-personal-records-table [personalRecords]="items" (personalRecordChanged)="personalRecordChanged.emit($event)"></app-personal-records-table>
+<pr-personal-records-table [personalRecords]="items" (personalRecordChanged)="personalRecordChanged.emit($event)"></pr-personal-records-table>
 <nj-overlay (clickOutside)="this.isAddFormVisible = false" *ngIf="isAddFormVisible">
-  <app-add-personal-record-form (formSubmit)="onAddSubmit($event)"></app-add-personal-record-form>
+  <pr-add-personal-record-form (formSubmit)="onAddSubmit($event)"></pr-add-personal-record-form>
 </nj-overlay>

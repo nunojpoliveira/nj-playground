@@ -19,6 +19,6 @@
 </table>
 
 <nj-overlay (clickOutside)="this.isEditFormVisible = false" *ngIf="isEditFormVisible">
-  <app-edit-personal-record-form [personalRecordToEdit]="personalRecordToEdit"
-                                 (formSubmit)="onEditSubmit($event)"></app-edit-personal-record-form>
+  <pr-edit-personal-record-form [personalRecordToEdit]="personalRecordToEdit"
+                                 (formSubmit)="onEditSubmit($event)"></pr-edit-personal-record-form>
 </nj-overlay>

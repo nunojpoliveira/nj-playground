@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
 import {PersonalRecord, PersonalRecordChange} from '../../../app.models';
 
 @Component({
-  selector: 'app-personal-records-table',
+  selector: 'pr-personal-records-table',
   templateUrl: './personal-records-table.component.html',
   styleUrls: ['./personal-records-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

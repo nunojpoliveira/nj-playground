@@ -3,7 +3,7 @@ import {PersonalRecordChange} from '../../../app.models';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-edit-personal-record-form',
+  selector: 'pr-edit-personal-record-form',
   templateUrl: './edit-personal-record-form.component.html',
   styleUrls: ['./edit-personal-record-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
