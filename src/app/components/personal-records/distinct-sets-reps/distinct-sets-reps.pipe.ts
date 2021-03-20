@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {PersonalRecord} from '../../app.models';
+import {PersonalRecord} from '../../../app.models';
 
 @Pipe({
   name: 'distinctSetsReps'

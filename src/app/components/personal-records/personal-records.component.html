@@ -1,31 +1,8 @@
-<table aria-describedby="personal-records-table">
-  <ng-container *ngIf="(items | distinctSetsReps) as distinctSetsReps">
-    <colgroup>
-      <col style="background-color: blue; width: 40%">
-      <col span="{{ distinctSetsReps.length }}" [ngStyle]="{'background-color': 'red', 'width': (100 - 40) / distinctSetsReps.length + '%' }">
-    </colgroup>
-    <tr>
-      <th id="lift">Lift</th>
-      <th *ngFor="let setsReps of distinctSetsReps" id="{{ setsReps }}">{{ setsReps }}</th>
-    </tr>
-    <tr *ngFor="let personalRecordItem of items" class="data-row">
-      <td class="lift">{{ personalRecordItem.exercise }}</td>
-      <td (click)="onPersonalRecordClick(personalRecordItem, setsReps)" *ngFor="let setsReps of distinctSetsReps">
-        <a class="personal-record-value" *ngIf="personalRecordItem.records[setsReps] as personalRecordValue">{{ personalRecordValue }}</a>
-        <a class="no-personal-record-value" *ngIf="!personalRecordItem.records[setsReps]">Insert</a>
-      </td>
-    </tr>
-  </ng-container>
-</table>
-<nj-overlay (clickOutside)="this.isFormVisible = false" *ngIf="isFormVisible">
-  <form (ngSubmit)="onSubmit()">
-    <label class="form-title">
-      Edit Personal Record
-    </label>
-    <label class="form-input">
-      New Personal Record
-      <input type="number" [(ngModel)]="change.record" min="0" max="999" name="weight" autocomplete="off">
-    </label>
-    <input type="submit">
-  </form>
+<div class="table-options-buttons">
+  <nj-button [type]="'text-regular-secondary'" [text]="'Add new Personal Record'"
+             (click)="isAddFormVisible = true"></nj-button>
+</div>
+<app-personal-records-table [personalRecords]="items" (personalRecordChanged)="personalRecordChanged.emit($event)"></app-personal-records-table>
+<nj-overlay (clickOutside)="this.isAddFormVisible = false" *ngIf="isAddFormVisible">
+  <app-add-personal-record-form (formSubmit)="onAddSubmit($event)"></app-add-personal-record-form>
 </nj-overlay>

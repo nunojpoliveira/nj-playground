@@ -2,9 +2,12 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, NgModule, Outpu
 import {OverlayModule} from '../overlay/overlay.component';
 import {ButtonModule} from '../button/button.component';
 import {PersonalRecord, PersonalRecordChange} from '../../app.models';
-import {DistinctSetsRepsPipe} from './distinct-sets-reps.pipe';
+import {DistinctSetsRepsPipe} from './distinct-sets-reps/distinct-sets-reps.pipe';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {EditPersonalRecordFormComponent} from './edit-personal-record-form/edit-personal-record-form.component';
+import {AddPersonalRecordFormComponent} from './add-personal-record-form/add-personal-record-form.component';
+import {PersonalRecordsTableComponent} from './personal-records-table/personal-records-table.component';
 
 @Component({
   selector: 'nj-personal-records[items]',
@@ -18,28 +21,18 @@ export class PersonalRecordsComponent {
 
   @Output() personalRecordChanged = new EventEmitter<PersonalRecordChange>();
 
-  isFormVisible = false;
+  isAddFormVisible = false;
 
-  change: PersonalRecordChange;
-
-  onPersonalRecordClick(personalRecordItem: PersonalRecord, setsReps: string): void {
-    this.change = {
-      exercise: personalRecordItem.exercise,
-      setsReps,
-      record: personalRecordItem.records[setsReps]
-    };
-    this.isFormVisible = true;
-  }
-
-  onSubmit(): void {
-    this.personalRecordChanged.emit(this.change);
-    this.isFormVisible = false;
+  onAddSubmit(personalRecordChange: PersonalRecordChange): void {
+    this.personalRecordChanged.emit(personalRecordChange);
+    this.isAddFormVisible = false;
   }
 }
 
 @NgModule({
-  imports: [CommonModule, FormsModule, OverlayModule, ButtonModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, OverlayModule, ButtonModule],
   exports: [PersonalRecordsComponent],
-  declarations: [DistinctSetsRepsPipe, PersonalRecordsComponent]
+  declarations: [AddPersonalRecordFormComponent, DistinctSetsRepsPipe, EditPersonalRecordFormComponent, PersonalRecordsComponent,
+    PersonalRecordsTableComponent]
 })
 export class PersonalRecordsModule { }

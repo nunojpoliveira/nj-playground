@@ -1,89 +1,15 @@
-$form-padding: 0.5rem;
-$form-input-margin-top: 0.5rem;
-$form-input-border: 1px solid #444444;
-$form-input-number-margin-top: 0.25rem;
-$form-input-number-height: 2rem;
-$form-input-number-padding-left: 0.5rem;
-$form-input-number-width: 3rem;
-$form-input-number-spin-button-margin: 0;
-$form-input-submit-background-color: white;
-$form-input-submit-margin-top: 0.5rem;
-$form-input-submit-hover-background-color: #c2c2c2;
+$add-new-personal-record-button-margin: 0 0 0.5rem 0.5rem;
 
-$lift-cell-padding: 0 0.5rem;
-
-$medium-font: 1.5rem Arial, sans-serif;
-
-$table-cell-padding: 0;
-
-table {
-  font: $medium-font;
-  user-select: none;
-  white-space: nowrap;
-  width: 100%;
-}
-
-td {
-  padding: $table-cell-padding;
-
-  &.lift {
-    padding: $lift-cell-padding;
-  }
-}
-
-td a {
-  cursor: pointer;
-  display: block;
-  text-align: center;
-}
-
-td a:hover {
-  background-color: lightcoral;
-}
-
-td:not(:hover) .no-personal-record-value {
-  visibility: hidden;
-}
-
-.form-title {
-  font: $medium-font;
-}
-
-.form-input {
+:host {
   display: flex;
   flex-direction: column;
-  margin-top: $form-input-margin-top;
 }
 
-form {
-  background-color: white;
-  padding: $form-padding;
+.table-options-buttons {
+  display: flex;
+  flex-direction: row;
 
-  input[type=submit] {
-    background-color: $form-input-submit-background-color;
-    border: $form-input-border;
-    cursor: pointer;
-    margin-top: $form-input-submit-margin-top;
-    outline: none;
-
-    &:hover {
-      background-color: $form-input-submit-hover-background-color;
-    }
+  nj-button {
+    margin: $add-new-personal-record-button-margin;
   }
-
-  input[type=number] {
-    border: $form-input-border;
-    box-sizing: border-box;
-    margin-top: $form-input-number-margin-top;
-    outline: none;
-    height: $form-input-number-height;
-    padding-left: $form-input-number-padding-left;
-    width: $form-input-number-width;
-  }
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: $form-input-number-spin-button-margin;
 }

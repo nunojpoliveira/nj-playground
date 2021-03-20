@@ -1,110 +1,50 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PersonalRecordsComponent } from './personal-records.component';
-import {MockComponent, MockPipe} from 'ng-mocks';
-import {DistinctSetsRepsPipe} from './distinct-sets-reps.pipe';
+import {PersonalRecordsComponent} from './personal-records.component';
+import {MockComponents} from 'ng-mocks';
 import {OverlayComponent} from '../overlay/overlay.component';
-import {PersonalRecord, PersonalRecordChange} from '../../app.models';
+import {PersonalRecordChange} from '../../app.models';
+import {ButtonComponent} from '../button/button.component';
+import {PersonalRecordsTableComponent} from './personal-records-table/personal-records-table.component';
+import {AddPersonalRecordFormComponent} from './add-personal-record-form/add-personal-record-form.component';
 
 describe('PersonalRecordsComponent', () => {
   let component: PersonalRecordsComponent;
   let fixture: ComponentFixture<PersonalRecordsComponent>;
 
-  const distinctSetsRepsPipeSpy = jasmine.createSpy('transform').and.callFake((_) => ['3x12', '5x5']);
-
-  const personalRecordsMock: PersonalRecord[] = [
-    {
-      id: 1,
-      exercise: 'exercise1',
-      records: {
-        '3x12': 50,
-        '5x5': 75
-      }
-    },
-    {
-      id: 1,
-      exercise: 'exercise2',
-      records: {
-        '3x12': 50
-      }
-    }
-  ];
-
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ PersonalRecordsComponent, MockComponent(OverlayComponent), MockPipe(DistinctSetsRepsPipe, distinctSetsRepsPipeSpy) ]
+      declarations: [
+        PersonalRecordsComponent,
+        MockComponents(AddPersonalRecordFormComponent, ButtonComponent, OverlayComponent, PersonalRecordsTableComponent)
+      ]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(PersonalRecordsComponent);
     component = fixture.componentInstance;
-    component.items = personalRecordsMock;
     fixture.detectChanges();
   });
 
-  it('should generate the table with the correct data', () => {
-    const headers = fixture.debugElement.nativeElement.querySelectorAll('th');
-    const firstRowCells = fixture.debugElement.nativeElement.querySelectorAll('.data-row')[0].querySelectorAll('td');
-    const secondRowCells = fixture.debugElement.nativeElement.querySelectorAll('.data-row')[1].querySelectorAll('td');
+  it('should set isFormVisible to false when clicking the Add Personal Record button', () => {
+    const addPersonalRecordButton = fixture.debugElement.nativeElement.querySelector('nj-button');
 
-    expect(headers[0].textContent).toEqual('Lift');
-    expect(headers[1].textContent).toEqual('3x12');
-    expect(headers[2].textContent).toEqual('5x5');
+    addPersonalRecordButton.click();
 
-    expect(firstRowCells[0].textContent).toEqual('exercise1');
-    expect(firstRowCells[1].textContent).toEqual('50');
-    expect(firstRowCells[2].textContent).toEqual('75');
-
-    expect(secondRowCells[0].textContent).toEqual('exercise2');
-    expect(secondRowCells[1].textContent).toEqual('50');
-    expect(secondRowCells[2].textContent).toEqual('Insert');
+    expect(component.isAddFormVisible).toBe(true);
   });
 
-  it('clicking on a personal record should set isFormVisible to true', () => {
-    const personalRecordCell = fixture.debugElement.nativeElement.querySelectorAll('.data-row')[0].querySelectorAll('td')[1];
-
-    personalRecordCell.click();
-
-    expect(component.isFormVisible).toBe(true);
-  });
-
-  it('should call DistinctSetsRepsPipe once', () => {
-    expect(distinctSetsRepsPipeSpy).toHaveBeenCalledWith(personalRecordsMock);
-  });
-
-  it('#onPersonalRecordClick should set personalRecordChange, and open the form', () => {
-    const clickedPersonalRecord: PersonalRecord = {
-      id: 1,
-      exercise: 'exercise1',
-      records: {
-        '3x12': 50,
-        '5x5': 75
-      }
-    };
-    component.onPersonalRecordClick(clickedPersonalRecord, '3x12');
-
-    expect(component.change).toEqual({
-      exercise: 'exercise1',
-      setsReps: '3x12',
-      record: 50
-    });
-    expect(component.isFormVisible).toBe(true);
-  });
-
-  it('#onSubmit should emit event, and close the form', () => {
-    const spy = spyOn(component.personalRecordChanged, 'emit');
-
-    const change: PersonalRecordChange = {
+  it('#onAddSubmit should emit event and close Add Personal Record form', () => {
+    const emitSpy = spyOn(component.personalRecordChanged, 'emit');
+    const personalRecordChange: PersonalRecordChange = {
       exercise: 'exercise1',
       setsReps: '3x12',
       record: 50
     };
 
-    component.change = change;
+    component.onAddSubmit(personalRecordChange);
 
-    component.onSubmit();
-
-    expect(spy).toHaveBeenCalledWith(change);
-    expect(component.isFormVisible).toBe(false);
+    expect(emitSpy).toHaveBeenCalledWith(personalRecordChange);
+    expect(component.isAddFormVisible).toBe(false);
   });
 });

@@ -1,0 +1,34 @@
+$lift-cell-padding: 0 0.5rem;
+
+$medium-font: 1.5rem Arial, sans-serif;
+
+$table-cell-padding: 0;
+
+table {
+  font: $medium-font;
+  user-select: none;
+  white-space: nowrap;
+  width: 100%;
+}
+
+td {
+  padding: $table-cell-padding;
+
+  &.lift {
+    padding: $lift-cell-padding;
+  }
+}
+
+td a {
+  cursor: pointer;
+  display: block;
+  text-align: center;
+}
+
+td a:hover {
+  background-color: lightcoral;
+}
+
+td:not(:hover) .no-personal-record-value {
+  visibility: hidden;
+}

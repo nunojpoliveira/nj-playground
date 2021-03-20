@@ -1,0 +1,10 @@
+<form [formGroup]="form" (ngSubmit)="this.form.valid && onSubmit()">
+  <label class="form-title">
+    Edit Personal Record
+  </label>
+  <label class="form-input">
+    New Personal Record
+    <input type="number" formControlName="weight" min="0" max="999" autocomplete="off">
+  </label>
+  <input type="submit">
+</form>

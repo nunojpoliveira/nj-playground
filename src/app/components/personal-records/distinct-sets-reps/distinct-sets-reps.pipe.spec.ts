@@ -1,5 +1,5 @@
 import {DistinctSetsRepsPipe} from './distinct-sets-reps.pipe';
-import {PersonalRecord} from '../../app.models';
+import {PersonalRecord} from '../../../app.models';
 
 describe('DistinctSetsRepsPipe', () => {
   const pipe = new DistinctSetsRepsPipe();
