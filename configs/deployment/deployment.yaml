@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nj-playground-angular
+spec:
+  selector:
+    matchLabels:
+      app: nj-playground-angular
+      tier: frontend
+      track: stable
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nj-playground-angular
+        tier: frontend
+        track: stable
+    spec:
+      containers:
+        - name: nginx
+          image: "njoliveira/nj-playground-angular:latest"
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/usr/sbin/nginx","-s","quit"]
