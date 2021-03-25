@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/app.effects';
 import { HttpClientModule } from '@angular/common/http';
+import {PersonalRecordsModule} from './components/personal-records/personal-records.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     ButtonModule,
     ContextMenuModule,
     HttpClientModule,
+    PersonalRecordsModule,
     EffectsModule.forRoot([AppEffects]),
     StoreModule.forRoot({ app: reducer }),
     StoreDevtoolsModule.instrument({
