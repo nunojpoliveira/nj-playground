@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: "njoliveira/nj-playground-angular:latest"
+          image: "njoliveira/nj-playground-angular:0.0.3-SNAPSHOT"
           lifecycle:
             preStop:
               exec:
