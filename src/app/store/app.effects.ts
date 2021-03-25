@@ -11,7 +11,7 @@ export class AppEffects {
 
   loadPersonalRecords$ = createEffect(() => this.actions$.pipe(
     ofType(AppActionTypes.LOAD_PERSONAL_RECORDS),
-    mergeMap(() => this.httpClient.get<PersonalRecord[]>('/personalRecords')
+    mergeMap(() => this.httpClient.get<PersonalRecord[]>('/api/personalrecords')
       .pipe(
         map(personalRecords => ({ type: AppActionTypes.LOAD_PERSONAL_RECORDS_SUCCESS, personalRecords })),
         catchError(error => of({ type: AppActionTypes.LOAD_PERSONAL_RECORDS_FAIL }))
