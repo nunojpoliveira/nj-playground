@@ -29,4 +29,4 @@
   <nj-context-menu [items]="contextMenuActionsEx2"></nj-context-menu>
   <nj-context-menu [items]="contextMenuActionsEx3"></nj-context-menu>
 </div>
-<nj-personal-records [items]="personalRecords$ | async"></nj-personal-records>
+<nj-personal-records [items]="personalRecords$ | async" (personalRecordChanged)="onPersonalRecordChanged($event)"></nj-personal-records>

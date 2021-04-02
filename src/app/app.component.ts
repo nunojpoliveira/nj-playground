@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { ContextMenuItem } from './components/context-menu/context-menu.component';
 import {Store} from '@ngrx/store';
-import {loadPersonalRecords} from './store/app.actions';
-import {PersonalRecord} from './app.models';
+import {loadPersonalRecords, setPersonalRecordChange} from './store/app.actions';
+import {PersonalRecord, PersonalRecordChange} from './app.models';
 import {selectPersonalRecords} from './store/app.selectors';
 import {Observable} from 'rxjs';
 
@@ -43,5 +43,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(loadPersonalRecords());
+  }
+
+  onPersonalRecordChanged(change: PersonalRecordChange): void {
+    this.store.dispatch(setPersonalRecordChange({ change }));
   }
 }

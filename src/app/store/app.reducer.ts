@@ -1,5 +1,11 @@
 import {Action, createReducer, on} from '@ngrx/store';
-import {loadPersonalRecords, loadPersonalRecordsFail, loadPersonalRecordsSuccess} from './app.actions';
+import {
+  loadPersonalRecords,
+  loadPersonalRecordsFail,
+  loadPersonalRecordsSuccess,
+  setPersonalRecordChange, setPersonalRecordChangeFail,
+  setPersonalRecordChangeSuccess
+} from './app.actions';
 import {initialState, State} from './app.state';
 
 const appReducer = createReducer(
@@ -14,6 +20,19 @@ const appReducer = createReducer(
     isLoadingPersonalRecords: false
   })),
   on(loadPersonalRecordsFail, state => ({
+    ...state,
+    isLoadingPersonalRecords: false
+  })),
+  on(setPersonalRecordChange, (state, { change }) => ({
+    ...state,
+    isLoadingPersonalRecords: true
+  })),
+  on(setPersonalRecordChangeSuccess, (state, { personalRecords }) => ({
+    ...state,
+    personalRecords,
+    isLoadingPersonalRecords: false
+  })),
+  on(setPersonalRecordChangeFail, state => ({
     ...state,
     isLoadingPersonalRecords: false
   }))
