@@ -6,7 +6,7 @@
     "start": "ng serve --proxy-config=proxies/proxy.config.json",
     "serve:all": "npm-run-all --parallel serve:api serve:spa",
     "serve:spa": "ng serve --proxy-config=proxies/proxy.mock.config.json",
-    "serve:api": "json-server --watch mocks.json --routes routes.json",
+    "serve:api": "json-server --watch backend/mocks.json --routes backend/routes.json --middlewares backend/middleware.ts",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
